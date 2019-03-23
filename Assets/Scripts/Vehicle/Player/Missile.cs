@@ -6,6 +6,7 @@ public class Missile : MonoBehaviour
     public float speed;
     public float damage;
     public float timer;
+    public GameObject firer;
 	// Use this for initialization
 	void Start ()
     {
@@ -29,8 +30,10 @@ public class Missile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "vehicle")
+        print(collision.gameObject.tag);
+        if(collision.gameObject != firer && (collision.gameObject.tag == "vehicle" || collision.gameObject.tag == "Player"))
         {
+            collision.gameObject.GetComponent<Health>().takeDamage(damage);
             Destroy(this.gameObject);
         }
     }

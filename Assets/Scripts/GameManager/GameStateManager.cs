@@ -17,7 +17,7 @@ public class GameStateManager : MonoBehaviour
         
     }
 
-    public bool isPlay()
+    public static bool isPlay()
     {
         return true;
     }

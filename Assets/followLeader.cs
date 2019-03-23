@@ -4,15 +4,34 @@ using UnityEngine;
 
 public class followLeader : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public TrackManager manager;
+    public float speed;
+    public float xBound;
+    public float yBound;
+
     void Start()
     {
-        
+        manager = GetComponentInParent<TrackManager>();
+        if (manager == null)
+            print("Follow Camera has no Track Manager");
+    }
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        if(GameStateManager.isPlay())
+        {
+            followObject(manager.getLeadingPlayer());
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void followObject(GameObject target)
     {
-        
+        if (Mathf.Abs(gameObject.transform.position.x - target.transform.position.x) > xBound || Mathf.Abs(gameObject.transform.position.y - target.transform.position.y) > yBound)
+        {
+            Vector3 displacement = target.transform.position - gameObject.transform.position;
+
+            gameObject.transform.position += new Vector3(displacement.normalized.x * Time.deltaTime * speed, displacement.normalized.y * Time.deltaTime * speed, 0);
+
+        }
     }
 }

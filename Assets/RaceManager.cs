@@ -7,22 +7,33 @@ public class RaceManager : MonoBehaviour
 {
     public int lap;
     public int currentSectionId;
+    public int expectedId;
 
-    public void enterNextSection(int sectionId, int nextExpectedId)
+    void Start()
     {
-        if(sectionId == expectedNextSectionId)
+        TrackManager manager = GetComponentInParent<TrackManager>();
+        if (manager != null)
+            manager.addPlayer(this);
+        else
+            print("Player not managed in track manager");
+
+    }
+
+    public void enterNextSection(int sectionId)
+    {
+        if(sectionId == expectedId)
         {
             currentSectionId = sectionId;
-            expectedNextSectionId = nextExpectedId;
+            expectedId = currentSectionId + 1;
         }
     }
 
-    internal void enterStartSection(int sectionId, int nextId)
+    internal void enterLastSection(int sectionId)
     {
-        if (sectionId == expectedNextSectionId)
+        if (sectionId == expectedId)
         {
-            currentSectionId = sectionId;
-            expectedNextSectionId = nextId;
+            currentSectionId = 0;
+            expectedId = 1;
             lap++;
         }
     }

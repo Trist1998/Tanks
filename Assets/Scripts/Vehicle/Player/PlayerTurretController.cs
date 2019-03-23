@@ -45,6 +45,7 @@ public class PlayerTurretController : MonoBehaviour
         GameObject missile = Instantiate(Resources.Load("Prefabs/Vehicle/Turret/MissilePrefab")) as GameObject;
         missile.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         missile.transform.rotation = transform.rotation;
+        missile.GetComponent<Missile>().firer = transform.parent.gameObject;
     }
 
 }
