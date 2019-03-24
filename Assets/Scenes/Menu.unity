@@ -632,6 +632,7 @@ GameObject:
   - component: {fileID: 777953964}
   - component: {fileID: 777953967}
   - component: {fileID: 777953966}
+  - component: {fileID: 777953968}
   m_Layer: 0
   m_Name: battle
   m_TagString: Untagged
@@ -740,6 +741,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.4534874, y: 1.9616239}
   m_EdgeRadius: 0
+--- !u!114 &777953968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777953963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 697c8725fd434b54aa25ce37d073e6c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameStateId: 0
 --- !u!1 &1205576310
 GameObject:
   m_ObjectHideFlags: 0
