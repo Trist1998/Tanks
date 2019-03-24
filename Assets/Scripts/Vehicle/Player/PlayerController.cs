@@ -45,15 +45,17 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-         
-        rigidBody.AddRelativeForce(new Vector2(1, 0) * acceleration * getForwardAxis());
+         if(GameStateManager.isPlay())
+        {
+            rigidBody.AddRelativeForce(new Vector2(1, 0) * acceleration * getForwardAxis());
 
-        transform.Rotate(new Vector3(0, 0, -1) * rotationSpeed * getTurnAxis());
+            transform.Rotate(new Vector3(0, 0, -1) * rotationSpeed * getTurnAxis());
 
-        rigidBody.AddForce(rigidBody.velocity.normalized * -1 * getCoFriction() * Mathf.Abs(Mathf.Sin(Vector3.Angle(rigidBody.velocity.normalized,transform.forward.normalized))));
+            rigidBody.AddForce(rigidBody.velocity.normalized * -1 * getCoFriction() * Mathf.Abs(Mathf.Sin(Vector3.Angle(rigidBody.velocity.normalized, transform.forward.normalized))));
 
-        controlSpeed();
-
+            controlSpeed();
+        }
+       
     }
 
     private void controlSpeed()

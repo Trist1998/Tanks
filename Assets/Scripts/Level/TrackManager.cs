@@ -1,11 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TrackManager : MonoBehaviour
 {
     public Dictionary<int, TrackSection> sections = new Dictionary<int, TrackSection>();
-    public List<RaceManager> players = new List<RaceManager>();
+    public Dictionary<int, RaceManager> players = new Dictionary<int, RaceManager>();
+    public List<int> playerIds = new List<int>();
+
 
     public void addSection(TrackSection toAdd)
     {
@@ -14,7 +17,9 @@ public class TrackManager : MonoBehaviour
 
     public void addPlayer(RaceManager toAdd)
     {
-        players.Add(toAdd);
+        playerIds.Add(toAdd.playerId);
+        players.Add(toAdd.playerId, toAdd);
+
     }
 
     public GameObject getLeadingPlayer()
@@ -22,8 +27,9 @@ public class TrackManager : MonoBehaviour
         int maxLap = 0;
         int maxId = 0;      
         List<RaceManager> leaders = new List<RaceManager>();
-        foreach (RaceManager player in players)
+        foreach (int playerId in playerIds)
         {
+            RaceManager player = players[playerId];
             if(player.lap > maxLap || (player.lap == maxLap && player.currentSectionId > maxId))
             {
                 leaders = new List<RaceManager>();
@@ -40,4 +46,10 @@ public class TrackManager : MonoBehaviour
             return sections[maxId].getLeadingPlayer(leaders);
         return leaders[0].gameObject;
     }
+
+    internal void playerDead(GameObject gameObject)
+    {
+        print("Dead");
+    }
+
 }

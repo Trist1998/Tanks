@@ -7,6 +7,7 @@ public class Missile : MonoBehaviour
     public float damage;
     public float timer;
     public GameObject firer;
+    public ParticleSystem explosion;
 	// Use this for initialization
 	void Start ()
     {
@@ -34,6 +35,7 @@ public class Missile : MonoBehaviour
         if(collision.gameObject != firer && (collision.gameObject.tag == "vehicle" || collision.gameObject.tag == "Player"))
         {
             collision.gameObject.GetComponent<Health>().takeDamage(damage);
+            explosion.Play();
             Destroy(this.gameObject);
         }
     }

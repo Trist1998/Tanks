@@ -8,6 +8,7 @@ public class RaceManager : MonoBehaviour
     public int lap;
     public int currentSectionId;
     public int expectedId;
+    public int playerId;
 
     void Start()
     {

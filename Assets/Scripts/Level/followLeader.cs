@@ -18,7 +18,7 @@ public class followLeader : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(GameStateManager.isPlay())
+        if(GameStateManager.isPlay() || GameStateManager.isStart())
         {
             followObject(manager.getLeadingPlayer());
         }
@@ -32,6 +32,15 @@ public class followLeader : MonoBehaviour
 
             gameObject.transform.position += new Vector3(displacement.normalized.x * Time.deltaTime * speed, displacement.normalized.y * Time.deltaTime * speed, 0);
 
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if(other.tag == "Player")
+        {
+            if (manager != null)
+                manager.playerDead(other.gameObject);
         }
     }
 }
