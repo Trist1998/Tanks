@@ -8,6 +8,7 @@ public class TrackManager : MonoBehaviour
     public Dictionary<int, TrackSection> sections = new Dictionary<int, TrackSection>();
     public Dictionary<int, RaceManager> players = new Dictionary<int, RaceManager>();
     public List<int> playerIds = new List<int>();
+    public TextMesh win;
 
 
     public void addSection(TrackSection toAdd)
@@ -47,9 +48,20 @@ public class TrackManager : MonoBehaviour
         return leaders[0].gameObject;
     }
 
-    internal void playerDead(GameObject gameObject)
+    internal void playerDead(int id)
     {
-        print("Dead");
+        GameStateManager.end();
+        int winnerId = 0;
+        foreach(int i in playerIds)
+        {
+            if(i != id)
+            {
+                winnerId = i;
+                break;
+            }
+        }
+
+        win.text = "Player " + winnerId + "\n WINS!!!"; 
     }
 
 }

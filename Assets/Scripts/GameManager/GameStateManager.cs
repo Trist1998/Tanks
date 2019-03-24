@@ -53,4 +53,8 @@ public class GameStateManager : MonoBehaviour
         gameStateId = GAME_PLAY;
     }
 
+    internal static bool isEnd()
+    {
+        return gameStateId == GAME_END;
+    }
 }

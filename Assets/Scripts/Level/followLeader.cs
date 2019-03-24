@@ -40,7 +40,7 @@ public class followLeader : MonoBehaviour
         if(other.tag == "Player")
         {
             if (manager != null)
-                manager.playerDead(other.gameObject);
+                manager.playerDead(other.gameObject.GetComponent<RaceManager>().playerId);
         }
     }
 }
